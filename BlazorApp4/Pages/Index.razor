@@ -1,0 +1,21 @@
+﻿@page "/"
+@using BlazorApp4.Data
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Policy = "Test")]
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+<button @onclick="Foo">Click</button>
+
+@code {
+    [Inject] private ApplicationDbContext context { get; set; }
+
+    private void Foo()
+    {
+        context.Todos.Add(new Todo { });
+        context.SaveChanges();
+    }
+}
